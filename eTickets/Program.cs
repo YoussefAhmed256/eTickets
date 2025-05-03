@@ -1,4 +1,5 @@
 using eTickets.Data;
+using eTickets.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets
@@ -16,7 +17,7 @@ namespace eTickets
                 options.UseSqlServer(
                     builder.Configuration.GetConnectionString("DefaultConnection")
                 ));
-
+            builder.Services.AddScoped<IActorsService, ActorsService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -38,10 +39,10 @@ namespace eTickets
                 name: "default",
                 pattern: "{controller=Movies}/{action=Index}/{id?}");
 
-            app.Run();
-
             // Seed the database
             AppDbInitializer.seed(app);
+
+            app.Run();
                 
         }
     }
