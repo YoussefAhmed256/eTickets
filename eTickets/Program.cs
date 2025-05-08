@@ -19,6 +19,7 @@ namespace eTickets
                 ));
             builder.Services.AddScoped<IActorsService, ActorsService>();
             builder.Services.AddScoped<IProducersService, ProducersService>();
+            builder.Services.AddScoped<ICinemasService, CinemasService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
