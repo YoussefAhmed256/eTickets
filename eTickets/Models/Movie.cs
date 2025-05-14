@@ -1,9 +1,10 @@
-﻿using eTickets.Data.Enums;
+﻿using eTickets.Data.Base;
+using eTickets.Data.Enums;
 using System.Runtime.InteropServices;
 
 namespace eTickets.Models
 {
-    public class Movie
+    public class Movie : IEntityBase
     {
         public int Id { get; set; }
         public string Name { get; set; }

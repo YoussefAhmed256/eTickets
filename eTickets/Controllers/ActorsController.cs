@@ -24,7 +24,7 @@ namespace eTickets.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("FullName,ProfilePictureUrl,Bio")] Actor actor)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(actor);
             }
@@ -48,7 +48,7 @@ namespace eTickets.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id,[Bind("Id,FullName,ProfilePictureUrl,Bio")] Actor actor)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(actor);
             }
