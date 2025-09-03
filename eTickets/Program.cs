@@ -1,4 +1,5 @@
 using eTickets.Data;
+using eTickets.Data.Cart;
 using eTickets.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,12 @@ namespace eTickets
             builder.Services.AddScoped<IProducersService, ProducersService>();
             builder.Services.AddScoped<ICinemasService, CinemasService>();
             builder.Services.AddScoped<IMoviesService, MoviesService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
+
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            builder.Services.AddScoped(sp => ShoppingCart.GetShoppingCartId(sp));
+            builder.Services.AddSession();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -35,6 +42,7 @@ namespace eTickets
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 
